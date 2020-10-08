@@ -1,9 +1,20 @@
 package com.pores.entities;
 
+import lombok.Builder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.math.BigDecimal;
 import java.util.List;
 
+@Document(collection = "Product_Table")
 public class Product {
+
+    @Transient
+    public static final String seqName = "product_sequence";
+
+    @Id
     Long id;
     String brand;
     String imageLocation;
@@ -18,6 +29,10 @@ public class Product {
     List<String> beautyConcern;
     String formulation;
     String spf;
+
+    public Product(){
+
+    }
 
     public Product(Long id, String brand, String imageLocation, String name, BigDecimal price, List<Ingredient> ingredients, String volume, List<String> skinType, BigDecimal rating_pores, BigDecimal rating_web, String productType, List<String> beautyConcern, String formulation, String spf) {
         this.id = id;
@@ -38,6 +53,10 @@ public class Product {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBrand() {

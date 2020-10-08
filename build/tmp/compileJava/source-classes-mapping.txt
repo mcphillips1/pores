@@ -1,2 +1,0 @@
-com/pores/Application.java
- com.pores.Application
