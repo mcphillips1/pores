@@ -18,7 +18,6 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 public class IDGenerator {
 
     private final MongoOperations mongoOperations;
-    private final Random random;
 
     public long generateSequence(String seqName) {
         DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(seqName)),
@@ -29,6 +28,14 @@ public class IDGenerator {
 
 
     public String generateTextSequence(String userIDSeqName){
-        return null;
+        Random random = new Random();
+        String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String digits = "0123456789";
+        char[] buf = new char[10];
+        char[] symbols = upper.concat(digits).toCharArray();
+
+        for (int idx = 0; idx < buf.length; ++idx)
+            buf[idx] = symbols[random.nextInt(symbols.length)];
+        return new String(buf + userIDSeqName.substring(0,3));
     }
 }

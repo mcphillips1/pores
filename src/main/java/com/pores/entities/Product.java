@@ -1,6 +1,5 @@
 package com.pores.entities;
 
-import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,34 +18,38 @@ public class Product {
     String brand;
     String imageLocation;
     String name;
-    BigDecimal price;
     List<Ingredient> ingredients;
     String volume;
     List<String> skinType;
     BigDecimal rating_pores;
     BigDecimal rating_web;
     String productType;
-    List<String> beautyConcern;
+    List<String> beautyGoal;
     String formulation;
     String spf;
+    BigDecimal pores_price;
+    List<PriceObject> prices;
+
+    // price is an array containing list of prices associated to sources
+
 
     public Product(){
 
     }
 
-    public Product(Long id, String brand, String imageLocation, String name, BigDecimal price, List<Ingredient> ingredients, String volume, List<String> skinType, BigDecimal rating_pores, BigDecimal rating_web, String productType, List<String> beautyConcern, String formulation, String spf) {
+    public Product(Long id, String brand, String imageLocation, String name, BigDecimal pores_price, List<Ingredient> ingredients, String volume, List<String> skinType, BigDecimal rating_pores, BigDecimal rating_web, String productType, List<String> beautyGoal, String formulation, String spf) {
         this.id = id;
         this.brand = brand;
         this.imageLocation = imageLocation;
         this.name = name;
-        this.price = price;
+        this.pores_price = pores_price;
         this.ingredients = ingredients;
         this.volume = volume;
         this.skinType = skinType;
         this.rating_pores = rating_pores;
         this.rating_web = rating_web;
         this.productType = productType;
-        this.beautyConcern = beautyConcern;
+        this.beautyGoal = beautyGoal;
         this.formulation = formulation;
         this.spf = spf;
     }
@@ -71,8 +74,8 @@ public class Product {
         return name;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getPores_price() {
+        return pores_price;
     }
 
     public List<Ingredient> getIngredients() {
@@ -99,8 +102,8 @@ public class Product {
         return productType;
     }
 
-    public List<String> getBeautyConcern() {
-        return beautyConcern;
+    public List<String> getBeautyGoal() {
+        return beautyGoal;
     }
 
     public String getFormulation() {
@@ -118,14 +121,14 @@ public class Product {
                 ", brand='" + brand + '\'' +
                 ", imageLocation='" + imageLocation + '\'' +
                 ", name='" + name + '\'' +
-                ", price=" + price +
+                ", price=" + pores_price +
                 ", ingredients=" + ingredients +
                 ", volume='" + volume + '\'' +
                 ", skinType=" + skinType +
                 ", rating_pores=" + rating_pores +
                 ", rating_web=" + rating_web +
                 ", productType='" + productType + '\'' +
-                ", beautyConcern=" + beautyConcern +
+                ", beautyConcern=" + beautyGoal +
                 ", formulation='" + formulation + '\'' +
                 ", spf='" + spf + '\'' +
                 '}';
