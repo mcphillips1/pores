@@ -12,7 +12,16 @@ public class ProfileConverter {
                 .ref(resource.getRef())
                 .location(resource.getLocation())
                 .skinType(resource.getSkinType())
-                .routine(RoutineConverter.convert(resource.getRoutines()))
+                .build();
+    }
+
+    public static ProfileResource convert(Profile profile){
+        return ProfileResource.builder()
+                .ref(profile.getRef())
+                .climate(profile.getClimate())
+                .Ethnicity(profile.getEthnicity())
+                .location(profile.getLocation())
+                .skinType(profile.getSkinType())
                 .build();
     }
 }

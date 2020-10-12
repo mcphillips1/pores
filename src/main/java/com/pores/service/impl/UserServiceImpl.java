@@ -65,11 +65,7 @@ public class UserServiceImpl implements UserService {
         if(Objects.isNull(user)){
             //return userNotFound;
         }
-
-
-
-
-        return null;
+        return convert(user);
     }
 
     @Override

@@ -7,13 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
 
     //Register a new user
     @PostMapping("/register")
@@ -30,20 +28,20 @@ public class UserController {
 
     //edit user account
     @PostMapping("/profile")
-    public ResponseEntity<ProfileResource> editUserProfile(@RequestParam String ref, @RequestBody ProfileResource resource){
+    public ResponseEntity<ProfileResource> editUserProfile(@RequestParam String ref, @RequestBody ProfileResource resource) {
         ProfileResource response = userService.editUserProfile(ref, resource);
         return ResponseEntity.ok(response);
     }
 
     //get userProfile
     @GetMapping("/profile")
-    public ResponseEntity<UserResource> getUserProfile(@RequestParam String ref){
-        return null;
+    public ResponseEntity<UserResource> getUserProfile(@RequestParam String ref) {
+        return ResponseEntity.ok(userService.getUserAccount(ref));
     }
 
     //get user account
     @GetMapping("/account")
-    public ResponseEntity<UserResource> getUserAccount(@RequestParam String ref){
+    public ResponseEntity<UserResource> getUserAccount(@RequestParam String ref) {
         return ResponseEntity.ok(userService.getUserAccount(ref));
     }
 }

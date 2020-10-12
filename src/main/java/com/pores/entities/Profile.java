@@ -22,6 +22,7 @@ public class Profile {
     private String climate;
     private String location;
     private List<Routine> routine;
+    private List<String> allergies;
 
 
 }
