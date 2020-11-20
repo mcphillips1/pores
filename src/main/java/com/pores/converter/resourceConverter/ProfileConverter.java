@@ -19,7 +19,7 @@ public class ProfileConverter {
         return ProfileResource.builder()
                 .ref(profile.getRef())
                 .climate(profile.getClimate())
-                .Ethnicity(profile.getEthnicity())
+                .ethnicity(profile.getEthnicity())
                 .location(profile.getLocation())
                 .skinType(profile.getSkinType())
                 .build();

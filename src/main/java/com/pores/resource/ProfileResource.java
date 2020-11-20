@@ -8,7 +8,7 @@ import lombok.Data;
 public class ProfileResource {
 
     private String ref;
-    private String Ethnicity;
+    private String ethnicity;
     private String skinType;
     private String climate;
     private String location;

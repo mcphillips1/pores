@@ -13,6 +13,7 @@ public class UserController {
 
     private final UserService userService;
 
+
     //Register a new user
     @PostMapping("/register")
     public ResponseEntity<String> registerNewUser(@RequestBody UserResource user) throws Exception {

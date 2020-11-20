@@ -14,7 +14,6 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     MongoTemplate template;
 
-
     private final static String DB_NAME = "pores_product_db";
 
     @Override

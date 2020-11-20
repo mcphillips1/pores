@@ -29,11 +29,13 @@ public class Product {
     @TextIndexed(weight = 2.0f)
     String name;
 
+    @TextIndexed
+    List<String> skinType;
+
     String imageLocation;
     String poresRef;
     List<Ingredient> ingredients;
     String volume;
-    List<String> skinType;
     BigDecimal rating_pores;
     BigDecimal rating_web;
     String productType;

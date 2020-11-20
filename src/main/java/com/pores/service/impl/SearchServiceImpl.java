@@ -1,7 +1,6 @@
 package com.pores.service.impl;
 
 import com.pores.converter.resourceConverter.ProductConverter;
-import com.pores.database.MongoTemplateSingleTon;
 import com.pores.database.repository.ProductRepo;
 import com.pores.database.repository.UserRepo;
 import com.pores.entities.PoresUser;
@@ -9,6 +8,7 @@ import com.pores.entities.Product;
 import com.pores.resource.ProductResource;
 import com.pores.service.SearchService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ import static org.springframework.data.mongodb.core.query.TextCriteria.forDefaul
 public class SearchServiceImpl implements SearchService {
 
     private final UserRepo userRepo;
-    private final MongoTemplateSingleTon template;
+    private final MongoTemplate template;
     private final ProductRepo productRepo;
 
 
@@ -35,7 +35,7 @@ public class SearchServiceImpl implements SearchService {
         PoresUser poresUser = userRepo.findByRef(ref);
 
         String skinType = poresUser.getProfile().getSkinType();
-        List<Product> suggestedProducts = template.getTemplate()
+        List<Product> suggestedProducts = template
                 .query(Product.class)
                 .matching(query(where(beautyGoal).elemMatch(where(beautyGoal).in(skinType))))
                 .all();
@@ -49,7 +49,7 @@ public class SearchServiceImpl implements SearchService {
                 forDefaultLanguage()
                         .caseSensitive(false)
                         .matchingAny(searchTerm.split(" ")));
-        List<Product> searchedProducts = template.getTemplate().find(query,Product.class);
+        List<Product> searchedProducts = template.find(query,Product.class);
         return searchedProducts.stream().map(ProductConverter::convert).collect(Collectors.toList());
     }
 }
